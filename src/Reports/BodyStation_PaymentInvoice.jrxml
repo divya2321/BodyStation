@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BodyStation_PaymentInvoice" pageWidth="216" pageHeight="842" columnWidth="176" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e138182e-b3c1-4bcb-a39a-ecdc67621f8e">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="BodyStation"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="invId" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT invoice.date, invoice.idinvoice, invoice.buyernic, CONCAT(fname,' ', lname) AS username,
+paymentinvoice.`from`  ,paymentinvoice.`to`,invoice.subtotal FROM invoice 
+INNER JOIN useraccount INNER JOIN staff INNER JOIN generaldetail 
+INNER JOIN paymentinvoice ON invoice.useraccount_iduseraccount = useraccount.iduseraccount 
+AND useraccount.staff_idstaff = staff.idstaff AND staff.generaldetail_idgeneraldetail=
+generaldetail.idgeneraldetail AND invoice.idinvoice = paymentinvoice.invoice_idinvoice WHERE type='pay'
+AND invoice.idinvoice= $P{invId}]]>
+	</queryString>
+	<field name="date" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoice"/>
+	</field>
+	<field name="idinvoice" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="idinvoice"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoice"/>
+	</field>
+	<field name="buyernic" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="buyernic"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoice"/>
+	</field>
+	<field name="username" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="username"/>
+	</field>
+	<field name="from" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="from"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paymentinvoice"/>
+	</field>
+	<field name="to" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="to"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paymentinvoice"/>
+	</field>
+	<field name="subtotal" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="subtotal"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoice"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="131" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="18" width="176" height="32" uuid="f257b8ec-b0f8-4f60-be6e-7e8f580483e8"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[The Body Station]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="3" width="176" height="1" uuid="2e90a93a-321b-4feb-a634-ebd2e2d56c60"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="0" y="60" width="176" height="20" uuid="81ea7b3a-b1e3-456a-8109-4d2b5c9efcc6"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[No. 81/81 Colombo Road]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="80" width="176" height="20" uuid="341b61be-2f2e-4e12-944e-cda10148aa0f"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Halpita, Polgasowita]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="100" width="176" height="20" uuid="82f8c8c2-4361-4680-8e70-fb830b0b4f9b"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Tel: 0112456524/0775426822]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="130" width="176" height="1" uuid="0a9696af-957e-47f3-a494-0168bbfcd6fd"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="66" splitType="Stretch">
+			<staticText>
+				<reportElement x="56" y="10" width="34" height="12" uuid="910c46ba-4082-455f-b0da-c8146ba17b20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="56" y="23" width="34" height="12" uuid="ec00e19b-f6a6-4aba-a8e0-84cb23f5c216"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Bill No:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="23" width="24" height="12" uuid="3a59a1a6-7a23-4184-8198-ebee7c5c5ca1"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[INV00]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="56" y="35" width="34" height="12" uuid="452902c6-7d46-42c4-8edf-f9d7f5cd9295"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Nic:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="56" y="46" width="48" height="12" uuid="e00ca3c7-0619-421d-9873-bf15d2917be8"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Inssued by:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="90" y="10" width="86" height="12" uuid="6e741f85-b718-4a2e-bba7-2fc0f9efb2ea"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="114" y="22" width="62" height="12" uuid="fa3fe153-85a7-4a3d-b063-1e58a3b6f3f6"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idinvoice}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="34" width="86" height="13" uuid="62ca15cd-26f9-436f-8a23-6d5b72f0e9ba"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{buyernic}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="104" y="47" width="72" height="11" uuid="e5216618-588a-45bd-8312-b5b03ac284e9"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{username}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="19" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="0" width="58" height="17" uuid="a9645b1b-425a-4488-be7c-fe384a92dee8"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[From]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="70" y="0" width="60" height="17" uuid="6ca9d1f8-2384-4a13-87c9-a2e12daa2b30"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[To]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="145" y="0" width="31" height="17" uuid="bad3ad73-1acc-498f-830e-09e9e3ecf8c0"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="2" y="0" width="58" height="20" uuid="d3829547-91d5-42d3-889f-ba5d3789284a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="029eb70a-23c6-4057-989b-749cd5b1d4aa"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{from}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="0" width="60" height="20" uuid="3f6e25e0-5a6d-40cf-9e4e-25a751d51e68">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="328be9f5-747c-424c-8016-65fa6fb227cf"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{to}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="145" y="0" width="31" height="20" uuid="ca9f8435-dbad-49d4-a5ef-55117e0f09a9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2060bfca-4422-47f0-baf0-7f9135bc546f"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{subtotal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="32" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="10" width="176" height="20" uuid="56adf7e9-6bf3-420f-8045-2891faab1aa6"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[THANK YOU ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="176" height="1" uuid="377934b0-8ea7-4428-92b9-28226b891db1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageFooter>
+</jasperReport>
